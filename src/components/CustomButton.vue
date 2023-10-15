@@ -33,7 +33,7 @@ const handleClick = () => {
     @click="handleClick"
     :class="chosen"
     :disabled="store.chosenItem ? store.chosenItem.length === 0 : true"
-    class="flex justify-center"
+    class="flex justify-center w-[300px]"
   >
     <LoaderSvg v-if="loading" color="white" />
     <span v-else>{{ name }}</span>
