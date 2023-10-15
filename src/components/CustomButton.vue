@@ -3,6 +3,7 @@ import { useStore } from "@/stores/store";
 import LoaderSvg from "./LoaderSvg.vue";
 import { useCreateContact } from "@/composables/useCreateContact";
 import { useCreateLead } from "@/composables/useCreateLead";
+import { useCreateCompany } from "@/composables/useCreateCompany";
 
 defineProps<{
   name: string;
@@ -19,6 +20,10 @@ const handleClick = () => {
   }
   if (store.chosenItem === "Сделка") {
     useCreateLead();
+  }
+
+  if (store.chosenItem === "Компания") {
+    useCreateCompany();
   }
 };
 </script>
