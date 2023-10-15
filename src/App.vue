@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import CustomButton from "@/components/CustomButton.vue";
 import CustomList from "@/components/CustomList.vue";
-import { onMounted, ref } from "vue";
+import { watch } from "vue";
 import { useAuth } from "@/composables/useAuth";
-const token = ref("");
+import { useUserStore } from "@/stores/user";
+import { useDataStore } from "@/stores/data";
+
+const user = useUserStore();
+const ids = useDataStore();
 
 const { data, error } = useAuth();
-
-onMounted(() => {
-  console.log("data", data.value);
+watch(data, (newData) => {
+  if (newData) user.setToken(newData);
 });
 </script>
 
@@ -17,6 +20,9 @@ onMounted(() => {
     <div class="flex flex-col gap-6">
       <CustomList />
       <CustomButton name="Создать" />
+      <span :key="item" v-for="item in ids.ids">
+        {{ item }}
+      </span>
     </div>
   </main>
 </template>

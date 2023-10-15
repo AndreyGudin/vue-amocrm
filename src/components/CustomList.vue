@@ -6,8 +6,7 @@ const items = ["Сделка", "Контакт", "Компания"];
 const store = useStore();
 const selected = ref("");
 function handleChange() {
-  if (selected.value.length === 0) store.set(false);
-  else store.set(true);
+  store.setItem(selected.value);
 }
 </script>
 
