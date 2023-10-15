@@ -19,7 +19,7 @@ watch(data, (newData) => {
   <main>
     <div class="flex flex-col gap-6">
       <CustomList />
-      <CustomButton name="Создать" />
+      <CustomButton name="Создать" :loading="!ids.loading" />
       <span :key="item" v-for="item in ids.ids">
         {{ item }}
       </span>
