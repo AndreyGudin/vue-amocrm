@@ -11,10 +11,18 @@ import { useDataStore } from "@/stores/data";
 const user = useUserStore();
 const ids = useDataStore();
 
-const { data, error } = useAuth();
+const { data } = useAuth();
+
 watch(data, (newData) => {
   if (newData) user.setToken(newData);
 });
+
+watch(
+  () => ids.error,
+  (error) => {
+    console.log("error", error);
+  }
+);
 </script>
 
 <template>
@@ -24,7 +32,7 @@ watch(data, (newData) => {
     >
       <CustomList />
       <CustomButton name="Создать" :loading="!ids.loading" />
-      <CreatedItems :items="ids.ids" />
+      <CreatedItems :items="ids.ids" :error="ids.error" />
     </div>
   </main>
 </template>

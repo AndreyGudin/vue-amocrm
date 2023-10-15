@@ -23,6 +23,7 @@ export function useCreateLead() {
     price: 20000,
   };
   ids.setLoading(false);
+  ids.setError(false);
   $api({
     method: "POST",
     url: "/create/lead",
@@ -36,5 +37,10 @@ export function useCreateLead() {
       ids.setLoading(true);
       ids.setId(`Сделка ${res.data._embedded?.leads[0].id}`);
     })
-    .catch((err) => err);
+    .catch((err) => {
+      console.log(err);
+      console.log("ошибка");
+      ids.setError(true);
+      ids.setLoading(false);
+    });
 }

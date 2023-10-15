@@ -24,6 +24,8 @@ export function useCreateContact() {
     name: "Петр Смирнов",
   };
   ids.setLoading(false);
+  ids.setError(false);
+
   $api({
     method: "POST",
     url: "/create/contact",
@@ -37,5 +39,9 @@ export function useCreateContact() {
       ids.setLoading(true);
       ids.setId(`Контакт ${res.data._embedded?.contacts[0].id}`);
     })
-    .catch((err) => err);
+    .catch((err) => {
+      console.log(err);
+      ids.setError(true);
+      ids.setLoading(false);
+    });
 }

@@ -22,6 +22,7 @@ export function useCreateCompany() {
     name: "АО Рога и Копыта",
   };
   ids.setLoading(false);
+  ids.setError(false);
   $api({
     method: "POST",
     url: "/create/company",
@@ -35,5 +36,9 @@ export function useCreateCompany() {
       ids.setLoading(true);
       ids.setId(`Компания ${res.data._embedded?.companies[0].id}`);
     })
-    .catch((err) => err);
+    .catch((err) => {
+      console.log(err);
+      ids.setError(true);
+      ids.setLoading(false);
+    });
 }
