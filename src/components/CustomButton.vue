@@ -2,7 +2,7 @@
 import { useStore } from "@/stores/store";
 import LoaderSvg from "./LoaderSvg.vue";
 import { useCreateContact } from "@/composables/useCreateContact";
-import { toRaw, watch } from "vue";
+import { useCreateLead } from "@/composables/useCreateLead";
 
 defineProps<{
   name: string;
@@ -16,6 +16,9 @@ const chosen =
 const handleClick = () => {
   if (store.chosenItem === "Контакт") {
     useCreateContact();
+  }
+  if (store.chosenItem === "Сделка") {
+    useCreateLead();
   }
 };
 </script>
