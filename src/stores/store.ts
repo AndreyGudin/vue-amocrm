@@ -2,10 +2,10 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 
 export const useStore = defineStore("store", () => {
-  const isChosen = ref(false);
+  const visitors = ref(false);
   function set(value: boolean) {
-    isChosen.value = value;
+    visitors.value = value;
   }
 
-  return { isChosen, set };
+  return { visitors, set };
 });
